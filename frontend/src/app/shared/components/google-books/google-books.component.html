@@ -1,0 +1,58 @@
+<mat-toolbar color="primary">
+  <span>API Google Books</span>
+  <div class="search-bar">
+    <mat-form-field appearance="outline" class="search-field" subscriptSizing="dynamic">
+      <input matInput placeholder="Pesquise pelo título" name="search" [(ngModel)]="search">
+      <button matSuffix mat-icon-button (click)="pesquisar()">
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+</mat-toolbar>
+
+<mat-card>
+  <div *ngIf="livros | async as livros" class="mat-elevation-z8">
+    <table mat-table [dataSource]="livros">
+
+      <ng-container matColumnDef="titulo">
+        <th mat-header-cell *matHeaderCellDef> Título</th>
+        <td mat-cell *matCellDef="let livro"> {{ livro.titulo }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="autor">
+        <th mat-header-cell *matHeaderCellDef> Autor</th>
+        <td mat-cell *matCellDef="let livro"> {{ livro.autor }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="isbn">
+        <th mat-header-cell *matHeaderCellDef> ISBN</th>
+        <td mat-cell *matCellDef="let livro"> {{ livro.isbn }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="dataPublicacao">
+        <th mat-header-cell *matHeaderCellDef> Data de publicação</th>
+        <td mat-cell *matCellDef="let livro"> {{ livro.dataPublicacao | date: "dd/MM/yyyy" }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="categoria">
+        <th mat-header-cell *matHeaderCellDef> Categoria</th>
+        <td mat-cell *matCellDef="let livro"> {{ getNomeCategoria(livro.categoria) }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Ações</th>
+        <td mat-cell *matCellDef="let livro">
+          <button mat-icon-button matTooltip="Adicionar" (click)="adicionar(livro)">
+            <mat-icon>check</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columnsName"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnsName;"></tr>
+
+    </table>
+
+  </div>
+
+</mat-card>

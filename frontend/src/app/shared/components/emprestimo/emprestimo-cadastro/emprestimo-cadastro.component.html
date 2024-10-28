@@ -1,0 +1,55 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="cadastro-form">
+
+  <mat-form-field appearance="fill">
+    <mat-label>Usuário</mat-label>
+    <input matInput [matAutocomplete]="auto1" formControlName="usuario"/>
+    <mat-autocomplete #auto1="matAutocomplete" [displayWith]="getOptionUsuario" disabled="">
+      <mat-option *ngFor="let item of usuarios" [value]="item">
+        {{ item.nome }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Livro</mat-label>
+    <input matInput [matAutocomplete]="auto2" formControlName="livro"/>
+    <mat-autocomplete #auto2="matAutocomplete" [displayWith]="getOptionLivro">
+      <mat-option *ngFor="let item of livros" [value]="item">
+        {{ item.titulo }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Data de empréstimo</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="dataEmprestimo">
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Data de devolução</mat-label>
+    <input matInput [matDatepicker]="picker1" formControlName="dataDevolucao">
+    <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-datepicker #picker1></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Status</mat-label>
+
+    <mat-select formControlName="status">
+      <mat-option *ngFor="let status of statuses" [value]="status">
+        {{ getNomeStatus(status) }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="botoes">
+    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+      Enviar
+    </button>
+    <button mat-raised-button color="warn" type="button" (click)="voltar()">
+      Voltar
+    </button>
+  </div>
+</form>

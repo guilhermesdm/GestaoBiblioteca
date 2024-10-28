@@ -1,0 +1,42 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="cadastro-form">
+
+  <mat-form-field appearance="fill">
+    <mat-label>Nome</mat-label>
+    <input matInput formControlName="nome" placeholder="Digite seu nome" required />
+    <mat-error *ngIf="form.controls['nome'].hasError('required')">
+      Nome é obrigatório
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" placeholder="Digite seu email" type="email" required/>
+    <mat-error *ngIf="form.controls['email'].hasError('email')">
+      Insira um email válido
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Data cadastro</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="dataCadastro">
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Telefone</mat-label>
+    <input matInput formControlName="telefone" placeholder="Insira seu telefone" type="tel" required mask="(00) 00000-0000"/>
+    <mat-error *ngIf="form.controls['telefone'].hasError('telefone')">
+      Insira um email válido
+    </mat-error>
+  </mat-form-field>
+
+  <div class="botoes">
+    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+      Enviar
+    </button>
+    <button mat-raised-button color="warn" type="button" (click)="voltar()">
+      Voltar
+    </button>
+  </div>
+</form>

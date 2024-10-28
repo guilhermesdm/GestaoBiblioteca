@@ -1,0 +1,12 @@
+<div>
+  <div *ngFor="let error of errors">
+    <h1 mat-dialog-title style="color: red">Erro!</h1>
+    <div mat-dialog-content>{{ error.message }}</div>
+    <br>
+    <div mat-dialog-content>{{ error.details }}</div>
+  </div>
+
+  <div mat-dialog-actions align="center">
+    <button mat-stroked-button mat-dialog-close>X</button>
+  </div>
+</div>

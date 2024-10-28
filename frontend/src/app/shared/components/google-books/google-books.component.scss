@@ -1,0 +1,35 @@
+.mat-toolbar {
+  background-color: #3fb596;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+}
+
+.mat-column-actions {
+  text-align: center;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  max-width: 30rem;
+  margin-left: auto;
+}
+
+.search-field {
+  width: 100%;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-right: 8px;
+
+  .mat-form-field-outline {
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .mat-form-field-outline-thick {
+    border-color: white;
+  }
+}

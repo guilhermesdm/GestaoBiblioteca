@@ -1,0 +1,56 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="cadastro-form">
+
+  <mat-form-field appearance="fill">
+    <mat-label>Título</mat-label>
+    <input matInput formControlName="titulo" placeholder="Digite o título" required/>
+    <mat-error *ngIf="form.controls['titulo'].hasError('required')">
+      Título é obrigatório
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Autor</mat-label>
+    <input matInput formControlName="autor" placeholder="Digite o nome do autor" required/>
+    <mat-error *ngIf="form.controls['autor'].hasError('required')">
+      Autor é obrigatório
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>ISBN</mat-label>
+    <input matInput formControlName="isbn" placeholder="Digite o ISBN do livro" required/>
+    <mat-error *ngIf="form.controls['isbn'].hasError('required')">
+      ISBN é obrigatório
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Data de publicação</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="dataPublicacao">
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Categoria</mat-label>
+
+    <mat-select formControlName="categoria">
+      <mat-option *ngFor="let categoria of categorias" [value]="categoria">
+        {{ getNomeCategoria(categoria) }}
+      </mat-option>
+    </mat-select>
+
+    <mat-error *ngIf="form.controls['categoria'].hasError('required')">
+      Categoria é obrigatório
+    </mat-error>
+  </mat-form-field>
+
+  <div class="botoes">
+    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+      Enviar
+    </button>
+    <button mat-raised-button color="warn" type="button" (click)="voltar()">
+      Voltar
+    </button>
+  </div>
+</form>

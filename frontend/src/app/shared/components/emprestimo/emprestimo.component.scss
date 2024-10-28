@@ -1,0 +1,18 @@
+.mat-toolbar {
+  background-color: #3fb596;
+  color: white;
+  .button-align {
+    margin-left: auto;
+  }
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.mat-column-actions {
+  text-align: center;
+}
